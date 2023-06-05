@@ -1,0 +1,21 @@
+{
+    "name": "lucas/sae2-01",
+    "type": "project",
+    "license": "Copyleft",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "debe0033",
+            "email": "lucas.debeve@etudiant.univ-reims.fr"
+        },
+        {
+            "name": "foul0028",
+            "email": "bryan.fouliard@etudiant.univ-reims.fr"
+        }
+    ],
+    "require": {}
+}
