@@ -17,6 +17,11 @@
             "email": "bryan.fouliard@etudiant.univ-reims.fr"
         }
     ],
+    "scripts" : {
+        "start:linux": ["Composer\\Config::disableProcessTimeout","bin/run-server.sh"],
+        "start:windows": ["Composer\\Config::disableProcessTimeout","bin/run-server.bat"],
+        "start": "@start:windows"
+    },
     "require": {
         "ext-pdo": "*"
     }
