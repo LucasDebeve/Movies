@@ -33,3 +33,15 @@ ou
 composer start
 ```
 Puis aller sur [localhost:8000/]().
+
+## Style de codage
+Utilisation de PHP CS Fixer pour respecter la recommandation PSR-12.
+### Affiche les erreurs et les corrections
+```bash
+composer test:cs
+```
+
+### Corrige les erreurs de style
+```bash
+composer fix:cs
+```
