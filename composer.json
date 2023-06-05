@@ -17,5 +17,7 @@
             "email": "bryan.fouliard@etudiant.univ-reims.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-pdo": "*"
+    }
 }
