@@ -1,0 +1,249 @@
+:root{
+    --primaryColor: #EFF5F5;
+    --secondaryColor: #D6E4E5;
+    --tertiaryColor: #497174;
+    --primaryColorGrey: #d7dbdb;
+    --fourthColor: #EB6440;
+    --font1: Noto, sans-serif;
+    --font2: Futara, sans-serif;
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body, html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+
+    background-color: var(--primaryColor);
+}
+
+body > *{
+    padding: 1rem;
+}
+
+header{
+    text-align: center;
+    color: var(--fourthColor);
+    font-family: var(--font2);
+    flex-grow: 0;
+}
+
+main{
+    overflow-y: scroll;
+    border: var(--tertiaryColor) 2px solid;
+    border-radius: 0.2rem;
+    font-family: var(--font1);
+    flex-grow: 1;
+}
+
+footer{
+    text-align: center;
+    color: var(--tertiaryColor);
+    font-family: var(--font1);
+    flex-grow: 0;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.list > *{
+    display: flex;
+    gap: 1rem;
+    color: var(--tertiaryColor);
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    background-color: var(--secondaryColor);
+}
+
+.list a{
+    text-decoration: none;
+    color: var(--tertiaryColor);
+    transition: color 0.2s ease-in-out;
+}
+.list a:hover{
+    color: var(--fourthColor);
+}
+
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.form__inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0;
+    flex-wrap: nowrap;
+    border-radius: 0.2rem;
+    flex-grow: 1;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.navbar > a, .navbar > button {
+    font-family: var(--font2);
+    text-decoration: none;
+    color: var(--tertiaryColor);
+    border: var(--secondaryColor) 1px solid;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    padding: 0.5rem 1.3rem;
+    background-color: var(--primaryColor);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.navbar > button:hover:not(.activated) {
+    background-color: var(--secondaryColor);
+}
+
+.navbar a:hover, .activated{
+    background-color: var(--fourthColor);
+    color: var(--primaryColor);
+    border: var(--fourthColor) 1px solid;
+    cursor: pointer;
+}
+
+.form__inline > * {
+    font-family: var(--font2);
+    font-size: 1rem;
+    border: none;
+    border-top: 1px solid var(--secondaryColor);
+    border-bottom: 1px solid var(--secondaryColor);
+    padding: 0.5rem 1.3rem;
+    background-color: var(--primaryColor);
+    color: var(--tertiaryColor);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+.form__inline > * ~ * {
+    border-right: var(--secondaryColor) 1px solid;
+}
+
+.form__inline > input[type="text"]:hover, .form__inline > input[type="text"]:focus {
+    background-color: var(--secondaryColor);
+    outline: none;
+}
+
+.form__inline button {
+    background-color: var(--secondaryColor);
+    cursor: pointer;
+}
+
+.form__inline button:hover {
+    background-color: var(--fourthColor);
+    color: var(--primaryColor);
+    outline: none;
+}
+
+.form__inline > :not(* ~ *) {
+    border-bottom-left-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
+}
+.form__inline > *:first-child {
+    border-bottom-left-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
+    border-left: 1px solid var(--secondaryColor);
+    border-right: 1px solid var(--secondaryColor);
+}
+
+.form__inline > *:last-child {
+    border-bottom-right-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+}
+
+input {
+    font-size: 1rem;
+}
+
+.navbar p{
+    font-family: var(--font2);
+    text-decoration: none;
+    color: var(--tertiaryColor);
+    border: var(--secondaryColor) 1px solid;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    padding: 0.5rem 1.3rem;
+    background-color: var(--primaryColorGrey);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card__description {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 900px) {
+    .menu {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        flex-wrap: nowrap;
+        text-align: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        flex-wrap: nowrap;
+        text-align: center;
+    }
+
+    .form__inline {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form__inline > * {
+        border: none !important;
+        border-radius: 0 !important;
+    }
+    .form__inline > *:first-child {
+        border-top-left-radius: 0.2rem !important;
+        border-top-right-radius: 0.2rem !important;
+        border: 1px solid var(--secondaryColor) !important;
+    }
+    .form__inline > *:nth-child(2) {
+        border-left: 1px solid var(--secondaryColor) !important;
+        border-right: 1px solid var(--secondaryColor) !important;
+    }
+
+    .form__inline > *:last-child {
+        border-bottom-left-radius: 0.2rem !important;
+        border-bottom-right-radius: 0.2rem !important;
+        border: 1px solid var(--secondaryColor) !important;
+    }
+}
