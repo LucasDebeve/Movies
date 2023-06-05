@@ -17,3 +17,19 @@ Ensuite, il faut installer les dépendances Composer du projet :
 ```bash
 composer install
 ```
+
+## Serveur Web local
+### Sur Linux
+```bash
+composer start:linux
+```
+Puis aller sur [localhost:8000/]().
+### Sur Windows
+```bash
+composer start:windows
+```
+ou
+```bash
+composer start
+```
+Puis aller sur [localhost:8000/]().
