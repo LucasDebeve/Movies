@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Entity;
 
 use Database\MyPdo;
+use Entity\Exception\EntityNotFoundException;
 
 class Movie
 {
@@ -182,7 +183,7 @@ class Movie
 
     /** Cherche un film par son id
      * @param int $id
-     * @throws \Exception
+     * @throws EntityNotFoundException
      * @return Movie
      */
     public static function findById(int $id): Movie
@@ -200,7 +201,7 @@ class Movie
         if (($result = $stmt->fetch())) {
             return $result;
         } else {
-            throw new \Exception("Movie not found");
+            throw new EntityNotFoundException("Film introuvable");
         }
     }
 }
