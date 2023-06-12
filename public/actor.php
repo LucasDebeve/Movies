@@ -26,8 +26,12 @@ try {
 
 $webPage->setTitle("Films - {$webPage->escapeString($actor->getName())}");
 
+$webPage->appendToMenu(<<<HTML
+<a href="index.php">Accueil</a>
+HTML);
+
 $webPage->appendContent(<<<HTML
-<div class="master_card">
+<div class="master__card">
     <img src="image.php?imageid={$actor->getAvatarId()}&type=actor" alt="poster">
     <div class="info">
         <h1>{$webPage->escapeString($actor->getName())}</h1>
