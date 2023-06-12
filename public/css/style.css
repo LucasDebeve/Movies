@@ -125,6 +125,7 @@ Toujours la liste des movies, mais pour les informations du film :
 .master__card{
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     width: 100%;
 }
 .master__card>img{
@@ -142,10 +143,14 @@ Toujours la liste des movies, mais pour les informations du film :
     border: none;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    font-style: italic;
 }
-.master__card>.info>.sub_info>*{
-    border: 2px solid var(--tertiaryColor);
-    border-radius: 5px;
+.tagline{
+    text-align: center;
+}
+.overview{
+    text-align: justify;
 }
 .master__card>.info>*:not(.overview){
     padding: 0.1rem;
@@ -167,7 +172,7 @@ Affichage pour PC :
         flex-direction: row;
     }
     .master__card>img{
-        width: 40vh;
+        width: 20vh;
     }
 }
 @media (pointer:coarse) {
