@@ -64,10 +64,10 @@ foreach ($casts as $cast) {
     try {
         $movie = Movie::findById($cast->getMovieId());
         $webPage->appendContent(<<<HTML
-<a href="movie.php?movieId={$movie->getId()}" class="card card__horizontal">
+<a href="movie.php?movieId={$movie->getId()}" class="card">
     <img class="card__img" src="image.php?imageid={$movie->getPosterId()}&type=movie" alt="poster">
     <div class="card__desc">
-        <h2>{$webPage->escapeString($movie->getTitle())} ({$movie->getReleaseDate()})</h2>
+        <h2>{$webPage->escapeString($movie->getTitle())}</br>({$movie->getReleaseDate()})</h2>
         <p>{$webPage->escapeString($cast->getRole())}</p>
     </div>
 </a>

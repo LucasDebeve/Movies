@@ -11,6 +11,7 @@
 *, *::before, *::after{
     box-sizing: border-box;
     margin: 0;
+    font-family: var(--font1);
 }
 
 body, html{
@@ -42,7 +43,6 @@ header{
     text-align: center;
 }
 .menu>a{
-    border: 1px solid var(--fourthColor);
     color: var(--primaryColorGrey);
     font-size: 1.3rem;
     text-decoration: none;
@@ -53,10 +53,9 @@ main{
     gap: 1rem;
     overflow-y: scroll;
     border: var(--tertiaryColor) 5px solid;
-    border-radius: 0.2rem;
     font-family: var(--font1);
     flex-grow: 1;
-    border-radius: 10px;
+    border-radius: 0.2rem;
     color: var(--tertiaryColor);
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
@@ -79,12 +78,12 @@ footer{
     width: 22vh;
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 0.2rem;
 }
 .card__img{
     width: 100%;
     object-fit: cover;
-    border-radius: 7px;
+    border-radius: 0.2rem;
 }
 .card__desc{
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -116,7 +115,17 @@ Pour la page movie, la liste des acteurs :
     flex-direction: row;
     width: 100%;
     border: 5px solid var(--tertiaryColor);
+    text-decoration: none;
+    color: var(--tertiaryColor);
+    font-size: 1rem;
+    transition: color 0.5s ease-in-out, font-size 0.5s ease-in-out;
 }
+.card__horizontal:hover{
+    color: var(--fourthColor);
+    font-size: 1.05rem;
+}
+
+
 .card__horizontal>img{
     object-fit: cover;
     border-radius: 5px 0 0 5px;
@@ -136,6 +145,11 @@ Pour la page movie, la liste des acteurs :
     border-radius: 5px;
     text-align: center;
 }
+.card__desc > p {
+    color: var(--primaryColorGrey);
+}
+
+
 /*
 Toujours la liste des movies, mais pour les informations du film :
  */
@@ -144,14 +158,18 @@ Toujours la liste des movies, mais pour les informations du film :
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+    align-items: center;
 }
 .master__card>img{
     width: 100%;
+    max-width: 300px;
+    border-radius: 0.2rem;
 }
 .master__card>.info{
     width: 100%;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 .master__card>.info>*{
     height: 100%;
@@ -166,9 +184,14 @@ Toujours la liste des movies, mais pour les informations du film :
 }
 .tagline{
     text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.2rem;
 }
+
 .overview{
     text-align: justify;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
 }
 .master__card>.info>*:not(.overview){
     padding: 0.1rem;
@@ -186,16 +209,25 @@ Affichage pour tablette :
 Affichage pour PC :
  */
 @media screen and (min-width: 775px) {
+    .menu {
+        flex-direction: row;
+    }
     .master__card{
         flex-direction: row;
+        align-items: flex-start;
     }
     .master__card>img{
         width: 20vh;
+        object-fit: cover;
     }
     .master__card>.info>.sub_info{
         flex-direction: row;
+        gap: 2rem;
     }
-
+    .sub_info .date~.date {
+        flex: 1;
+        text-align: left;
+    }
 
     .list__cast {
         flex-direction: row;

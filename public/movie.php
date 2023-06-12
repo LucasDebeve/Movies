@@ -64,13 +64,13 @@ foreach ($casts as $cast) {
     try {
         $actor = People::findById($cast->getPeopleId());
         $webPage->appendContent(<<<HTML
-<div class="card card__horizontal">
+<a href="actor.php?actorId={$actor->getId()}" class="card card__horizontal">
     <img src="image.php?imageid={$actor->getAvatarId()}&type=actor" alt="poster">
     <div class="info">
         <h3>{$webPage->escapeString($actor->getName())}</h3>
         <span>{$webPage->escapeString($cast->getRole())}</span>
     </div>
-</div>
+</a>
 HTML);
 
     } catch (EntityNotFoundException $e) {

@@ -7,6 +7,10 @@ use Html\AppWebPage;
 
 $webPage = new AppWebPage("Les films");
 
+$webPage->appendToMenu(<<<HTML
+<a href="index.php">Accueil</a>
+HTML);
+
 $movieCollection = MovieCollection::findAll();
 
 $webPage->appendContent("<div class='list'>");
