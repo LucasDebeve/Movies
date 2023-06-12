@@ -16,6 +16,12 @@ try {
 } catch (ParameterException) {
     http_response_code(400);
 } catch (EntityNotFoundException) {
+    if (!empty($_GET['type']) && ($_GET['type'] === 'movie')) {
+        header("Content-Type: image/jpeg");
+        echo file_get_contents("static/movie.png");
+    } else {
+        http_response_code(404);
+    }
     http_response_code(404);
 } catch (Exception) {
     http_response_code(500);
