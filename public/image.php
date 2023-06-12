@@ -19,7 +19,10 @@ try {
     if (!empty($_GET['type']) && ($_GET['type'] === 'movie')) {
         header("Content-Type: image/jpeg");
         echo file_get_contents("static/movie.png");
-    } else {
+    } elseif (!empty($_GET['type']) && ($_GET['type'] === 'actor')) {
+        header("Content-Type: image/jpeg");
+        echo file_get_contents("static/actor.png");
+    } else{
         http_response_code(404);
     }
     http_response_code(404);
