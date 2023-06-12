@@ -11,7 +11,7 @@ use Entity\People;
 if (!empty($_GET['movieId']) && ctype_digit($_GET['movieId'])) {
     $movieId=intval($_GET['movieId']);
 } else {
-    header("Location: /",response_code: 302);
+    header("Location: /", response_code: 302);
     exit();
 }
 
@@ -47,7 +47,7 @@ if (array_key_exists($movie->getOriginalLanguage(), $languageCountry)) {
     $webPage->appendContent("<span class='original_title'><span class='fi fi-{$movie->getOriginalLanguage()}'>.</span>{$movie->getOriginalTitle()}</span>");
 }
 $webPage->appendContent("</div>");
-if ($movie->getTagline() != null ) {
+if ($movie->getTagline() != null) {
     $webPage->appendContent("<p class='tagline'>{$webPage->escapeString($movie->getTagline())}</p>");
 }
 if ($movie->getOverview() != null) {
@@ -60,7 +60,7 @@ HTML);
 
 $webPage->appendContent("<div class='list'>");
 $casts = CastCollection::findByMovieId($movieId);
-foreach ($casts as $cast){
+foreach ($casts as $cast) {
     try {
         $actor = People::findById($cast->getPeopleId());
         $webPage->appendContent(<<<HTML
