@@ -10,7 +10,7 @@ use Entity\Movie;
 class MovieCollection
 {
     /**
-     * Une collection d'artiste est générée avec la méthode `findAll()` de la classe `src/Entity/Collection/MovieCollection.php`, qui retourne une liste (array) de films sous forme d'objects de la classe `src/Entity/Movie.php`.
+     * Une collection de films est générée avec la méthode `findAll()` de la classe `src/Entity/Collection/MovieCollection.php`, qui retourne une liste (array) de films sous forme d'objects de la classe `src/Entity/Movie.php`.
      * @return Movie[]
      */
     public static function findAll()
