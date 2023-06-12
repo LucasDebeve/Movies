@@ -11,7 +11,7 @@ class CastCollection
      * @param int $id
      * @return array
      */
-    public static function findByMovieId(int $id):array
+    public static function findByMovieId(int $id): array
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
@@ -29,7 +29,7 @@ class CastCollection
      * @param int $actorId
      * @return array
      */
-    public static function findByPeopleId(int $actorId) : array
+    public static function findByPeopleId(int $actorId): array
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
