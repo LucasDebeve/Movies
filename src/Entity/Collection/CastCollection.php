@@ -10,7 +10,6 @@ class CastCollection
     /** Cherche un film par son id, et retourne tout le cast qui y est associé
      * @param int $id
      * @return array
-     *@throws \Exception
      */
     public static function findByMovieId(int $id):array
     {
