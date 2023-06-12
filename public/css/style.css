@@ -36,7 +36,17 @@ header{
     font-family: var(--font2);
     flex-grow: 0;
 }
-
+.menu {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.menu>a{
+    border: 1px solid var(--fourthColor);
+    color: var(--primaryColorGrey);
+    font-size: 1.3rem;
+    text-decoration: none;
+}
 main{
     display: flex;
     flex-direction: column;
@@ -142,7 +152,8 @@ Toujours la liste des movies, mais pour les informations du film :
 .master__card>.info>.sub_info{
     border: none;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     font-style: italic;
 }
@@ -173,6 +184,9 @@ Affichage pour PC :
     }
     .master__card>img{
         width: 20vh;
+    }
+    .master__card>.info>.sub_info{
+        flex-direction: row;
     }
 }
 @media (pointer:coarse) {
