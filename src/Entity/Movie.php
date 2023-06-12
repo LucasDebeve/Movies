@@ -2,6 +2,9 @@
 
 namespace Entity;
 
+use Database\MyPdo;
+use Entity\Exception\EntityNotFoundException;
+
 class Movie
 {
     private ?int $id;
@@ -12,6 +15,7 @@ class Movie
     private string $releaseDate;
     private int $runtime;
     private string $tagline;
+    private int $posterId;
 
     /**
      * Constructeur privé de Film
@@ -155,5 +159,46 @@ class Movie
     {
         $this->tagline = $tagline;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPosterId(): string
+    {
+        return $this->posterId;
+    }
+
+    /**
+     * @param string $tagline
+     * @return Movie
+     */
+    public function setPosterId(int $poster): Movie
+    {
+        $this->posterId = $poster;
+        return $this;
+    }
+
+    /** Cherche un film par son id
+     * @param int $id
+     * @throws \Exception
+     * @return Movie
+     */
+    public static function findById(int $id) : Movie {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<SQL
+        SELECT id, title, 
+        FROM artist
+        WHERE id = :idMovie;
+        SQL
+        );
+        $stmt->setFetchMode(MyPdo::FETCH_CLASS, Movie::class);
+        $stmt->execute([":idMovie" => $id]);
+
+        if (($result = $stmt->fetch())) {
+            return $result;
+        }
+        else
+            throw new \Exception("Movie not found");
     }
 }
