@@ -15,10 +15,10 @@ $webPage->appendContent("<div class='list'>");
 foreach ($movieCollection as $movie) {
     $strPosterId = strval($movie->getPosterId());
     $webPage->appendContent(<<<HTML
-<div class="card">
-    <img src="image.php?imageid={$strPosterId}&type=movie" alt="{$movie->getTitle()}">
-    <p>{$webPage->escapeString($movie->getTitle())}</p>
-</div>
+<a href="/movie.php?movieId={$movie->getId()}" class="card">
+    <img class="card__img" src="image.php?imageid={$strPosterId}&type=movie" alt="{$movie->getTitle()}">
+    <p class="card__desc">{$webPage->escapeString($movie->getTitle())}</p>
+</a>
 HTML);
 }
 
