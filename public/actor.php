@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use Entity\Collection\CastCollection;
 use Entity\Exception\EntityNotFoundException;
+use Entity\Movie;
 use Entity\People;
 use Html\AppWebPage;
 
@@ -22,13 +23,13 @@ try {
     exit();
 }
 
-$webPage->setTitle("Films - {$actor->getName()}");
+$webPage->setTitle("Films - {$webPage->escapeString($actor->getName())}");
 
 $webPage->appendContent(<<<HTML
 <div class="master_card">
     <img src="image.php?imageid={$actor->getAvatarId()}&type=actor" alt="poster">
     <div class="info">
-        <h1>{$actor->getName()}</h1>
+        <h1>{$webPage->escapeString($actor->getName())}</h1>
     <div class='sub_info'>
 HTML);
 if ($actor->getBirthday() != null ) {
@@ -44,7 +45,7 @@ if ($actor->getDeathday() != null) {
 $webPage->appendContent("</div>");
 
 if ($actor->getBiography() != null) {
-    $webPage->appendContent("<p class='overview'>{$actor->getBiography()}</p>");
+    $webPage->appendContent("<p class='overview'>{$webPage->escapeString($actor->getBiography())}</p>");
 }
 
 $webPage->appendContent(<<<HTML
@@ -53,5 +54,24 @@ $webPage->appendContent(<<<HTML
 HTML);
 
 $casts = CastCollection::findByPeopleId($actorId);
+$webPage->appendContent("<div class='list'>");
+foreach ($casts as $cast){
+    try {
+        $movie = Movie::findById($cast->getMovieId());
+        $webPage->appendContent(<<<HTML
+<a href="movie.php?movieId={$movie->getId()}" class="card card__horizontal">
+    <img class="card__img" src="image.php?imageid={$movie->getPosterId()}&type=movie" alt="poster">
+    <div class="card__desc">
+        <h2>{$webPage->escapeString($movie->getTitle())} ({$movie->getReleaseDate()})</h2>
+        <p>{$webPage->escapeString($cast->getRole())}</p>
+    </div>
+</a>
+HTML);
+    } catch (EntityNotFoundException $e) {
+    }
+}
+$webPage->appendContent("</div>");
+
+
 
 echo $webPage->toHTML();
