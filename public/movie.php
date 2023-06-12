@@ -25,11 +25,13 @@ try {
 }
 
 $webPage->setTitle("Film - {$movie->getTitle()}");
-
+$webPage->appendToMenu(<<<HTML
+<a href="index.php">Accueil</a>
+HTML);
 $webPage->appendCssURL("https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css");
 
 $webPage->appendContent(<<<HTML
-<div class="master_card">
+<div class="master__card">
     <img src="image.php?imageid={$movie->getPosterId()}&type=movie" alt="poster">
     <div class="info">
         <h1>{$webPage->escapeString($movie->getTitle())}</h1>
