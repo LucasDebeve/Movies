@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Entity;
 
 use Database\MyPdo;
-use Entity\Exception\EntityNotFoundException;
 
 class Movie
 {
@@ -184,12 +185,13 @@ class Movie
      * @throws \Exception
      * @return Movie
      */
-    public static function findById(int $id) : Movie {
+    public static function findById(int $id): Movie
+    {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
-        SELECT id, title, 
-        FROM artist
-        WHERE id = :idMovie;
+        SELECT *
+        FROM movie
+        WHERE id = :idMovie
         SQL
         );
         $stmt->setFetchMode(MyPdo::FETCH_CLASS, Movie::class);
@@ -197,8 +199,8 @@ class Movie
 
         if (($result = $stmt->fetch())) {
             return $result;
-        }
-        else
+        } else {
             throw new \Exception("Movie not found");
+        }
     }
 }
