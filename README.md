@@ -34,6 +34,24 @@ composer start
 ```
 Puis aller sur [localhost:8000/]().
 
+## Roadmap
+
+- [x] Liste des films
+  - [x] Affichage des films
+  - [x] Style de la page
+- [x] Détail d'un film
+  - [x] Affichage des informations du film
+  - [x] Affichage des acteurs du film
+  - [x] Style de la page
+- [ ] Détail d'un acteur
+  - [x] Affichage des informations de l'acteur
+  - [x] Affichage des films de l'acteur
+  - [ ] Style de la page
+- [ ] Création d'un film
+- [ ] Modification d'un film
+- [ ] Suppression d'un film
+- [ ] Filtrage par genre des films
+
 ## Style de codage
 Utilisation de PHP CS Fixer pour respecter la recommandation PSR-12.
 ### Affiche les erreurs et les corrections

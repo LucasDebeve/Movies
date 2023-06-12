@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Entity;
@@ -30,7 +31,8 @@ class Image
     /**
      *
      */
-    public static function findById(int $id) : Image {
+    public static function findById(int $id): Image
+    {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
         SELECT id, jpeg
