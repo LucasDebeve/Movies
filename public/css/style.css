@@ -114,6 +114,7 @@ Pour la page movie :
     border: 2px solid var(--tertiaryColor);
     height: 100%;
     border-radius: 5px;
+    text-align: center;
 }
 
 /*
