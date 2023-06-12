@@ -20,8 +20,7 @@ class MovieCollection
             SELECT *
             FROM movie
             ORDER BY name
-            SQL
-        );
+            SQL);
         $stmt->execute();
         return $stmt->fetchall(MyPDO::FETCH_CLASS, Movie::class);
     }
