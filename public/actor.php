@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Entity\Collection\CastCollection;
@@ -10,7 +11,7 @@ use Html\AppWebPage;
 if (!empty($_GET['actorId']) && ctype_digit($_GET['actorId'])) {
     $actorId = intval($_GET['actorId']);
 } else {
-    header("Location: /",response_code: 302);
+    header("Location: /", response_code: 302);
     exit();
 }
 
@@ -32,7 +33,7 @@ $webPage->appendContent(<<<HTML
         <h1>{$webPage->escapeString($actor->getName())}</h1>
     <div class='sub_info'>
 HTML);
-if ($actor->getBirthday() != null ) {
+if ($actor->getBirthday() != null) {
     $webPage->appendContent("<span class='date'>{$actor->getBirthday()}</span>");
 } else {
     $webPage->appendContent("<span class='date'>?</span>");
@@ -55,7 +56,7 @@ HTML);
 
 $casts = CastCollection::findByPeopleId($actorId);
 $webPage->appendContent("<div class='list'>");
-foreach ($casts as $cast){
+foreach ($casts as $cast) {
     try {
         $movie = Movie::findById($cast->getMovieId());
         $webPage->appendContent(<<<HTML

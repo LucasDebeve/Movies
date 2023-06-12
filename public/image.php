@@ -20,7 +20,7 @@ try {
     } elseif (!empty($_GET['type']) && ($_GET['type'] === 'actor')) {
         header("Content-Type: image/jpeg");
         echo file_get_contents("static/actor.png");
-    } else{
+    } else {
         http_response_code(400);
     }
 } catch (EntityNotFoundException) {
@@ -30,7 +30,7 @@ try {
     } elseif (!empty($_GET['type']) && ($_GET['type'] === 'actor')) {
         header("Content-Type: image/jpeg");
         echo file_get_contents("static/actor.png");
-    } else{
+    } else {
         http_response_code(404);
     }
     http_response_code(404);
