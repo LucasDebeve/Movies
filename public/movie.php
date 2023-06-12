@@ -58,8 +58,8 @@ foreach ($casts as $cast){
 <div class="card card__horizontal">
     <img src="image.php?imageid={$actor->getAvatarId()}&type=actor" alt="poster">
     <div class="info">
-        <p>{$webPage->escapeString($cast->getRole())}</p>
-        <p>{$webPage->escapeString($actor->getName())}</p>
+        <span><h2>Rôle(s) :</h2><p>{$webPage->escapeString($cast->getRole())}</p></span>
+        <span><h2>Nom :</h2>{$webPage->escapeString($actor->getName())}</span>
     </div>
 </div>
 HTML);

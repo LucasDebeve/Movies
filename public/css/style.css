@@ -96,20 +96,24 @@ Pour la page movie :
     display: flex;
     flex-direction: row;
     width: 100%;
+    border: 5px solid var(--tertiaryColor);
 }
 .card__horizontal>img{
     object-fit: cover;
+    border-radius: 5px;
 }
 .card__horizontal>.info{
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--tertiaryColor);
     gap: 1rem;
     padding: 0.1rem;
     width: 100%;
+    margin: 0.2rem;
 }
 .card__horizontal>.info>*{
     border: 2px solid var(--tertiaryColor);
+    height: 100%;
+    border-radius: 5px;
 }
 
 /*
