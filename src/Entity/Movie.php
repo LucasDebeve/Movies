@@ -163,15 +163,15 @@ class Movie
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getPosterId(): string
+    public function getPosterId(): int
     {
         return $this->posterId;
     }
 
     /**
-     * @param string $tagline
+     * @param int $poster
      * @return Movie
      */
     public function setPosterId(int $poster): Movie
