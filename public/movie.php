@@ -32,17 +32,17 @@ $webPage->appendContent(<<<HTML
 <div class="master_card">
     <img src="image.php?imageid={$movie->getPosterId()}&type=movie" alt="poster">
     <div class="info">
-        <h1>{$movie->getTitle()}</h1>
+        <h1>{$webPage->escapeString($movie->getTitle())}</h1>
         <div class="sub_info">
             <span class="date">{$movie->getReleaseDate()}</span>
-            <span class="original_title"><span class="fi fi-{$movie->getOriginalLanguage()}">.</span>{$movie->getOriginalTitle()}</span>
+            <span class="original_title"><span class="fi fi-{$webPage->escapeString($movie->getOriginalLanguage())}">.</span>{$webPage->escapeString($movie->getOriginalTitle())}</span>
         </div>
 HTML);
 if ($movie->getTagline() != null ) {
-    $webPage->appendContent("<p class='tagline'>{$movie->getTagline()}</p>");
+    $webPage->appendContent("<p class='tagline'>{$webPage->escapeString($movie->getTagline())}</p>");
 }
 if ($movie->getOverview() != null) {
-    $webPage->appendContent("<p class='overview'>{$movie->getOverview()}</p>");
+    $webPage->appendContent("<p class='overview'>{$webPage->escapeString($movie->getOverview())}</p>");
 }
 $webPage->appendContent(<<<HTML
     </div>
@@ -58,8 +58,8 @@ foreach ($casts as $cast){
 <div class="card card__horizontal">
     <img src="image.php?imageid={$actor->getAvatarId()}&type=actor" alt="poster">
     <div class="info">
-        <h2>{$actor->getName()}</h2>
-        <p>{$cast->getRole()}</p>
+        <p>{$webPage->escapeString($cast->getRole())}</p>
+        <p>{$webPage->escapeString($actor->getName())}</p>
     </div>
 </div>
 HTML);

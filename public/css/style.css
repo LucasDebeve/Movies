@@ -45,6 +45,7 @@ main{
     flex-grow: 1;
     border-radius: 10px;
     color: var(--tertiaryColor);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 footer{
@@ -98,6 +99,17 @@ Pour la page movie :
 }
 .card__horizontal>img{
     object-fit: cover;
+}
+.card__horizontal>.info{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--tertiaryColor);
+    gap: 1rem;
+    padding: 0.1rem;
+    width: 100%;
+}
+.card__horizontal>.info>*{
+    border: 2px solid var(--tertiaryColor);
 }
 
 /*
