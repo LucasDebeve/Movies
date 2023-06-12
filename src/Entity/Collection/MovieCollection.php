@@ -16,10 +16,10 @@ class MovieCollection
     public static function findAll()
     {
         $stmt = MyPDO::getInstance()->prepare(
-            <<<'SQL'
+            <<<SQL
             SELECT *
             FROM movie
-            ORDER BY name
+            ORDER BY title
             SQL);
         $stmt->execute();
         return $stmt->fetchall(MyPDO::FETCH_CLASS, Movie::class);
