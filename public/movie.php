@@ -30,7 +30,7 @@ $webPage->appendCssURL("https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/f
 
 $webPage->appendContent(<<<HTML
 <div class="master_card">
-    <img src="image.php?imageid={$movie->getPosterId()}" alt="poster">
+    <img src="image.php?imageid={$movie->getPosterId()}&type=movie" alt="poster">
     <div class="info">
         <h1>{$movie->getTitle()}</h1>
         <div class="sub_info">
@@ -56,7 +56,7 @@ foreach ($casts as $cast){
         $actor = People::findById($cast->getPeopleId());
         $webPage->appendContent(<<<HTML
 <div class="card card__horizontal">
-    <img src="image.php?imageid={$actor->getAvatarId()}" alt="poster">
+    <img src="image.php?imageid={$actor->getAvatarId()}&type=actor" alt="poster">
     <div class="info">
         <h2>{$actor->getName()}</h2>
         <p>{$cast->getRole()}</p>
