@@ -37,9 +37,16 @@ $webPage->appendContent(<<<HTML
         <h1>{$webPage->escapeString($movie->getTitle())}</h1>
         <div class="sub_info">
             <span class="date">{$movie->getReleaseDate()}</span>
-            <span class="original_title"><span class="fi fi-{$webPage->escapeString($movie->getOriginalLanguage())}">.</span>{$webPage->escapeString($movie->getOriginalTitle())}</span>
-        </div>
 HTML);
+
+$languageCountry = ["en" => "gb", "ja" => "jp", "zh" => "cn", "ko" => "kr"];
+
+if (array_key_exists($movie->getOriginalLanguage(), $languageCountry)) {
+    $webPage->appendContent("<span class='original_title'><span class='fi fi-{$languageCountry[$movie->getOriginalLanguage()]}'>.</span>{$movie->getOriginalTitle()}</span>");
+} else {
+    $webPage->appendContent("<span class='original_title'><span class='fi fi-{$movie->getOriginalLanguage()}'>.</span>{$movie->getOriginalTitle()}</span>");
+}
+$webPage->appendContent("</div>");
 if ($movie->getTagline() != null ) {
     $webPage->appendContent("<p class='tagline'>{$webPage->escapeString($movie->getTagline())}</p>");
 }

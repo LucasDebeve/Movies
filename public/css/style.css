@@ -135,6 +135,22 @@ Toujours la liste des movies, mais pour les informations du film :
     display: flex;
     flex-direction: column;
 }
+.master__card>.info>*{
+    height: 100%;
+}
+.master__card>.info>.sub_info{
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+.master__card>.info>.sub_info>*{
+    border: 2px solid var(--tertiaryColor);
+    border-radius: 5px;
+}
+.master__card>.info>*:not(.overview){
+    padding: 0.1rem;
+    flex: 0;
+}
 /*
 Affichage pour tablette :
  */
