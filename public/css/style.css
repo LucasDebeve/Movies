@@ -61,7 +61,7 @@ footer{
 .list>*{
     position: relative;
     border: 2px solid black;
-    width: 27vh;
+    width: 22vh;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
