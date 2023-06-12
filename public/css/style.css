@@ -1,11 +1,12 @@
 :root{
-    --primaryColor: #020536;
-    --secondaryColor: #030757;
-    --tertiaryColor: #c7c9f0;
-    --primaryColorGrey: #d7dbdb;
-    --fourthColor: #88d8f2;
+    --primaryColor: #333533;
+    --secondaryColor: #242423;
+    --tertiaryColor: #e8eddf;
+    --primaryColorGrey: #cfdbd5;
+    --fourthColor: #f5cb5c;
     --font1: Noto, sans-serif;
     --font2: Futara, sans-serif;
+
 }
 
 *, *::before, *::after{
@@ -24,7 +25,7 @@ body{
     padding: 10px;
     gap: 10px;
 
-    background: linear-gradient(to bottom,var(--primaryColor),var(--secondaryColor));
+    background: var(--secondaryColor);
 }
 
 body > *{
@@ -36,17 +37,28 @@ header{
     color: var(--fourthColor);
     font-family: var(--font2);
     flex-grow: 0;
+    font-variant: small-caps;
 }
 .menu {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-.menu>a{
-    color: var(--primaryColorGrey);
+.menu > a{
     font-size: 1.3rem;
+    color: var(--tertiaryColor);
     text-decoration: none;
+    transition: all 0.5s ease-in-out;
 }
+.menu > a:hover {
+    color: var(--fourthColor);
+    text-shadow: 0 0 10px var(--fourthColor);
+    transform: translateY(-2px);
+}
+.menu > a:active {
+    transform: translateY(2px);
+}
+
 main{
     display: flex;
     flex-direction: column;
@@ -66,6 +78,12 @@ footer{
     font-family: var(--font1);
     flex-grow: 0;
 }
+h1 {
+    font-family: var(--font2);
+    color: var(--fourthColor);
+    text-shadow: 0 0 10px var(--fourthColor);
+}
+
 .list{
     display: flex;
     flex-wrap: wrap;
@@ -74,12 +92,14 @@ footer{
 }
 .card{
     position: relative;
-    border: 2px solid black;
+    border: 2px solid var(--primaryColor);
     width: 22vh;
     display: flex;
     flex-direction: column;
     border-radius: 0.2rem;
+    transition: box-shadow 0.5s ease-in-out;
 }
+
 .card__img{
     width: 100%;
     object-fit: cover;
@@ -94,7 +114,7 @@ footer{
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: white;
+    color: var(--tertiaryColor);
     font-size: 1.2rem;
     padding: 3rem 0 0.5rem 0;
 }
@@ -122,6 +142,7 @@ Pour la page movie, la liste des acteurs :
 }
 .card__horizontal:hover{
     color: var(--fourthColor);
+    text-shadow: 0 0 10px var(--fourthColor);
     font-size: 1.05rem;
 }
 

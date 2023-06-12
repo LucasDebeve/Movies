@@ -67,7 +67,7 @@ foreach ($casts as $cast) {
 <a href="movie.php?movieId={$movie->getId()}" class="card">
     <img class="card__img" src="image.php?imageid={$movie->getPosterId()}&type=movie" alt="poster">
     <div class="card__desc">
-        <h2>{$webPage->escapeString($movie->getTitle())}</br>({$movie->getReleaseDate()})</h2>
+        <h3>{$webPage->escapeString($movie->getTitle())}</br>({$movie->getReleaseDate()})</h3>
         <p>{$webPage->escapeString($cast->getRole())}</p>
     </div>
 </a>
