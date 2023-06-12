@@ -105,6 +105,12 @@ footer{
 /*
 Pour la page movie, la liste des acteurs :
  */
+.list__cast {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .card__horizontal{
     display: flex;
     flex-direction: row;
@@ -113,7 +119,7 @@ Pour la page movie, la liste des acteurs :
 }
 .card__horizontal>img{
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
 }
 .card__horizontal>.info{
     display: flex;
@@ -122,9 +128,10 @@ Pour la page movie, la liste des acteurs :
     padding: 0.1rem;
     width: 100%;
     margin: 0.2rem;
+    justify-content: center;
 }
 .card__horizontal>.info>*{
-    border: 2px solid var(--tertiaryColor);
+    flex: 0;
     height: 100%;
     border-radius: 5px;
     text-align: center;
@@ -171,7 +178,7 @@ Toujours la liste des movies, mais pour les informations du film :
 Affichage pour tablette :
  */
 @media screen and (min-width: 360px){
-    .list{
+    .list {
         justify-content: space-evenly;
     }
 }
@@ -187,6 +194,17 @@ Affichage pour PC :
     }
     .master__card>.info>.sub_info{
         flex-direction: row;
+    }
+
+
+    .list__cast {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .card__horizontal {
+        width: auto;
+        flex: 1;
+        min-width: 40%;
     }
 }
 @media (pointer:coarse) {
