@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Entity\Collection\GenreCollection;
 use Entity\Collection\MovieCollection;
 use Html\AppWebPage;
 
@@ -32,4 +33,26 @@ $webPage->appendToMenu(<<<HTML
 HTML);
 
 $webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
+
+
+// Ajout de la barre de recherche
+// Drop down list des genres
+$webPage->appendToMenu(<<<HTML
+<form action="research.php" method="get">
+    <select name="genreId">
+HTML);
+$genres = GenreCollection::findAll();
+
+foreach ($genres as $genre) {
+    $webPage->appendToMenu(<<<HTML
+        <option value="{$genre->getId()}">{$genre->getName()}</option>
+HTML);
+}
+
+$webPage->appendToMenu(<<<HTML
+    </select>
+    <button type="submit">Rechercher</button>
+</form>
+HTML);
+
 echo $webPage->toHTML();
