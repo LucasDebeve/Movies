@@ -41,8 +41,12 @@ header{
 }
 .menu {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     text-align: center;
+    justify-content: space-evenly;
+}
+.menu>#danger{
+    color: red;
 }
 .menu > a{
     font-size: 1.3rem;
@@ -221,7 +225,7 @@ Toujours la liste des movies, mais pour les informations du film :
 /*
 Affichage pour tablette :
  */
-@media screen and (min-width: 360px){
+@media screen and (min-width: 480px){
     .list {
         justify-content: space-evenly;
     }
@@ -230,9 +234,6 @@ Affichage pour tablette :
 Affichage pour PC :
  */
 @media screen and (min-width: 775px) {
-    .menu {
-        flex-direction: row;
-    }
     .master__card{
         flex-direction: row;
         align-items: flex-start;
