@@ -28,6 +28,6 @@ HTML);
 
 $webPage->appendContent("</div>");
 $webPage->appendToMenu(<<<HTML
-<a href="admin/movie-form.php">+<a/>
+<a href="admin/movie-form.php">Ajouter</a>
 HTML);
 echo $webPage->toHTML();
