@@ -51,11 +51,11 @@ header{
     text-decoration: none;
     transition: all 0.5s ease-in-out;
 }
-.menu>a>span{
+a>span{
     vertical-align: middle;
     font-size: 2rem;
 }
-.menu>a>.menu__detail{
+.menu__detail{
     display: none;
 }
 .menu > a:hover {
@@ -70,6 +70,10 @@ header{
 }
 .menu > a:active {
     transform: translateY(2px);
+}
+button[type="submit"]>span{
+    font-size: 3rem!important;
+    vertical-align: middle;
 }
 .full__form{
     display: flex;
@@ -259,7 +263,7 @@ Affichage pour tablette :
 Affichage pour PC :
  */
 @media screen and (min-width: 775px) {
-    .menu>a>.menu__detail{
+    .menu__detail{
         display: inline;
     }
     .master__card{

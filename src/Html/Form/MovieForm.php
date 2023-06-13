@@ -51,7 +51,7 @@ class MovieForm
     <input type="text" name="tagline" id="tagline" value="{$this->escapeString($this->movie->getTagline())}" required>
     <label for="overview">Résumé</label>
     <textarea name="overview" id="overview" cols="30" rows="10" required>{$this->escapeString($this->movie->getTagline())}</textarea>
-    <input type="submit" value="Enregistrer">
+    <button type="submit"><span class="menu__detail">Enregistrer</span><span class="material-symbols-outlined">save</span></button>
 </form>
 HTML;
         } else {
@@ -72,7 +72,7 @@ HTML;
     <input type="text" name="tagline" id="tagline" value="" required>
     <label for="overview">Résumé</label>
     <textarea name="overview" id="overview" cols="30" rows="10" required></textarea>
-    <input type="submit" value="Enregistrer">
+    <button type="submit"><span class="menu__detail">Enregistrer</span><span class="material-symbols-outlined">save</span></button>
 </form>
 HTML;
         }

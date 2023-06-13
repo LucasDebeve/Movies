@@ -28,4 +28,5 @@ try {
 } catch (Exception) {
     http_response_code(500);
 }
+$webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
 echo $webPage->toHTML();
