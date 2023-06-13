@@ -8,7 +8,7 @@ use Html\AppWebPage;
 $webPage = new AppWebPage("Les films");
 
 $webPage->appendToMenu(<<<HTML
-<a href="index.php"><span class="menu__detail">Accueil </span><span class="material-symbols-outlined">home</span></a>
+<a href="index.php"><span class="menu__detail">Accueil</span><span class="material-symbols-outlined">home</span></a>
 HTML);
 
 $movieCollection = MovieCollection::findAll();

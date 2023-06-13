@@ -26,7 +26,7 @@ try {
 
 $webPage->setTitle("Film - {$movie->getTitle()}");
 $webPage->appendToMenu(<<<HTML
-<a href="index.php">Accueil <span class="material-symbols-outlined">home</span></a>
+<a href="index.php"><span class="menu__detail">Accueil</span><span class="material-symbols-outlined">home</span></a>
 HTML);
 $webPage->appendCssURL("https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css");
 
@@ -79,8 +79,8 @@ HTML);
 }
 $webPage->appendContent("</div>");
 $webPage->appendToMenu(<<<HTML
-<a href="admin/movie-form.php?movieId={$movie->getId()}">Modifier <span class="material-symbols-outlined">edit</span></a>
-<a id="danger" href="admin/movie-delete.php?movieId={$movie->getId()}">Supprimer <span class="material-symbols-outlined">delete</span></a>
+<a href="admin/movie-form.php?movieId={$movie->getId()}"><span class="menu__detail">Modifier</span><span class="material-symbols-outlined">edit</span></a>
+<a id="danger" href="admin/movie-delete.php?movieId={$movie->getId()}"><span class="menu__detail">Supprimer</span><span class="material-symbols-outlined">delete</span></a>
 HTML);
 
 $webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
