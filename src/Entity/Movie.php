@@ -181,6 +181,16 @@ class Movie
         return $this;
     }
 
+    /**
+     * @param string $title
+     * @return Movie
+     */
+    public function setTitle(string $title): Movie
+    {
+        $this->title = $title;
+        return $this;
+    }
+
     /** Cherche un film par son id
      * @param int $id
      * @throws EntityNotFoundException
@@ -202,6 +212,100 @@ class Movie
             return $result;
         } else {
             throw new EntityNotFoundException("Film introuvable");
+        }
+    }
+
+    /** Supprime un film
+     * @return $this
+     */
+    public function delete() : Movie {
+        $stmt = MyPdo::getInstance()->prepare(<<<SQL
+DELETE FROM movie
+WHERE id = := idMovie
+SQL);
+        $stmt->execute([":idMovie" => $this->getId()]);
+        $this->setId(null);
+        return $this;
+    }
+
+    /** Créer un film
+     * @param string $title Titre du film
+     * @param string $originalTitle Titre original du film
+     * @param string $originalLanguage Langue originale du film
+     * @param string $overview Résumé du film
+     * @param string $releaseDate Date de sortie du film
+     * @param int $runtime Durée du film
+     * @param string $tagline Slogan du film
+     * @param int $posterId Id de l'affiche du film
+     * @param int|null $id Id de l'artiste à créée
+     * @return Movie Film créé
+     */
+    public static function create(string $title,string $originalTitle, string $originalLanguage, string $overview,
+                           string $releaseDate, int $runtime, string $tagline, int $posterId, ?int $id) : Movie {
+        $movie = new self();
+        $movie->setTitle($title)->setOriginalTitle($originalTitle)->setOriginalLanguage($originalLanguage)->setOverview($overview);
+        return $movie->setReleaseDate($releaseDate)->setRuntime($runtime)->setTagline($tagline)->setPosterId($posterId)->setId($id);
+    }
+
+    /** Met à jour un film dans la base de données
+     * @return $this Film mis à jour
+     */
+    protected function update(): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(<<<SQL
+UPDATE artist
+SET title = :title,
+    originalTitle = :originalTitle,
+    originalLanguage = :originalLanguage,
+    overview = :overview,
+    releaseDate = :releaseDate,
+    runtime = :runtime,
+    tagline = :tagline,
+    posterId = :posterId
+WHERE id = :idArtist
+SQL);
+        $stmt->execute([":idMovie" => $this->id,
+            ":name"=>$this->title,
+            ":originalTitle"=>$this->originalTitle,
+            ":originalLanguage"=>$this->originalLanguage,
+            ":overview"=>$this->overview,
+            ":releaseDate"=>$this->releaseDate,
+            ":runtime"=>$this->runtime,
+            ":tagline"=>$this->tagline,
+            ":posterId"=>$this->posterId]);
+        return $this;
+    }
+
+
+    /** Insère un film dans la base de données
+     * @return $this Film inséré
+     */
+    protected function insert(): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(<<<SQL
+INSERT INTO movie (title, originalTitle, originalLanguage, overview, releaseDate, runtime, tagline, posterId)
+VALUES (:title, :originalTitle, :originalLanguage, :overview, :releaseDate, :runtime, :tagline, :posterId)
+SQL);
+        $stmt->execute([":title"=>$this->title,
+            ":originalTitle"=>$this->originalTitle,
+            ":originalLanguage"=>$this->originalLanguage,
+            ":overview"=>$this->overview,
+            ":releaseDate"=>$this->releaseDate,
+            ":runtime"=>$this->runtime,
+            ":tagline"=>$this->tagline,
+            ":posterId"=>$this->posterId]);
+        $this->setId(intval(MyPdo::getInstance()->lastInsertId()));
+        return $this;
+    }
+
+    /** Insère ou met un jour un film dans la base de données
+     * @return $this Film inséré ou mis à jour
+     */
+    public function save() : Movie {
+        if ($this->id) {
+            return $this->update();
+        } else {
+            return $this->insert();
         }
     }
 }
