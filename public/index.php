@@ -27,5 +27,7 @@ HTML);
 }
 
 $webPage->appendContent("</div>");
-
+$webPage->appendToMenu(<<<HTML
+<a href="admin/movie-form.php">+<a/>
+HTML);
 echo $webPage->toHTML();
