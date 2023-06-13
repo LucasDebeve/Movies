@@ -35,7 +35,7 @@ class MovieForm
     {
         if (!is_null($this->movie)) {
             return <<<HTML
-<form action="{$action}" method="post">
+<form action="{$action}" method="post" class="full__form">
     <input type="hidden" name="id" id="id" value="{$this->movie->getId()}">
     <label for="title">Titre</label>
     <input type="text" name="title" id="title" value="{$this->escapeString($this->movie->getTitle())}" required>
@@ -51,12 +51,12 @@ class MovieForm
     <input type="text" name="tagline" id="tagline" value="{$this->escapeString($this->movie->getTagline())}" required>
     <label for="overview">Résumé</label>
     <textarea name="overview" id="overview" cols="30" rows="10" required>{$this->escapeString($this->movie->getTagline())}</textarea>
-    <input type="submit" value="Enregistrer">
+    <button type="submit"><span class="menu__detail">Enregistrer</span><span class="material-symbols-outlined">save</span></button>
 </form>
 HTML;
         } else {
             return <<<HTML
-<form action="{$action}" method="post">
+<form action="{$action}" method="post" class="full__form">
     <input type="hidden" name="id" id="id" value="">
     <label for="title">Titre</label>
     <input type="text" name="title" id="title" value="" required>
@@ -72,7 +72,7 @@ HTML;
     <input type="text" name="tagline" id="tagline" value="" required>
     <label for="overview">Résumé</label>
     <textarea name="overview" id="overview" cols="30" rows="10" required></textarea>
-    <input type="submit" value="Enregistrer">
+    <button type="submit"><span class="menu__detail">Enregistrer</span><span class="material-symbols-outlined">save</span></button>
 </form>
 HTML;
         }

@@ -6,6 +6,7 @@ use Entity\Exception\EntityNotFoundException;
 use Exception\ParameterException;
 use Entity\Movie;
 use Html\Form\MovieForm;
+use Html\AppWebPage;
 
 try {
     if (isset($_GET["movieId"])) {
@@ -18,7 +19,8 @@ try {
         $movie=null;
     }
     $form=new MovieForm($movie);
-    echo $form->getHtmlForm("movie-save.php");
+    $webPage=new AppWebPage("Création/Modification");
+    $webPage->appendContent($form->getHtmlForm("movie-save.php"));
 } catch (ParameterException) {
     http_response_code(400);
 } catch (EntityNotFoundException) {
@@ -26,3 +28,5 @@ try {
 } catch (Exception) {
     http_response_code(500);
 }
+$webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
+echo $webPage->toHTML();
