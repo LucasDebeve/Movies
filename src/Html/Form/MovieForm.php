@@ -35,7 +35,7 @@ class MovieForm
     {
         if (!is_null($this->movie)) {
             return <<<HTML
-<form action="{$action}" method="post">
+<form action="{$action}" method="post" class="full__form">
     <input type="hidden" name="id" id="id" value="{$this->movie->getId()}">
     <label for="title">Titre</label>
     <input type="text" name="title" id="title" value="{$this->escapeString($this->movie->getTitle())}" required>
@@ -56,7 +56,7 @@ class MovieForm
 HTML;
         } else {
             return <<<HTML
-<form action="{$action}" method="post">
+<form action="{$action}" method="post" class="full__form">
     <input type="hidden" name="id" id="id" value="">
     <label for="title">Titre</label>
     <input type="text" name="title" id="title" value="" required>
