@@ -55,6 +55,9 @@ header{
     vertical-align: middle;
     font-size: 2rem;
 }
+.menu>a>.menu__detail{
+    display: none;
+}
 .menu > a:hover {
     color: var(--fourthColor);
     text-shadow: 0 0 10px var(--fourthColor);
@@ -240,6 +243,9 @@ Affichage pour tablette :
 Affichage pour PC :
  */
 @media screen and (min-width: 775px) {
+    .menu>a>.menu__detail{
+        display: inline;
+    }
     .master__card{
         flex-direction: row;
         align-items: flex-start;

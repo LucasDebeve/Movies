@@ -8,7 +8,7 @@ use Html\AppWebPage;
 $webPage = new AppWebPage("Les films");
 
 $webPage->appendToMenu(<<<HTML
-<a href="index.php">Accueil <span class="material-symbols-outlined">home</span></a>
+<a href="index.php"><span class="menu__detail">Accueil </span><span class="material-symbols-outlined">home</span></a>
 HTML);
 
 $movieCollection = MovieCollection::findAll();
@@ -28,7 +28,7 @@ HTML);
 
 $webPage->appendContent("</div>");
 $webPage->appendToMenu(<<<HTML
-<a href="admin/movie-form.php">Ajouter <span class="material-symbols-outlined">add</span></a>
+<a href="admin/movie-form.php"><span class="menu__detail">Ajouter</span> <span class="material-symbols-outlined">add</span></a>
 HTML);
 
 $webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
