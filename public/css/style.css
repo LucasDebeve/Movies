@@ -1,16 +1,18 @@
 :root{
-    --primaryColor: #020536;
-    --secondaryColor: #030757;
-    --tertiaryColor: #c7c9f0;
-    --primaryColorGrey: #d7dbdb;
-    --fourthColor: #88d8f2;
+    --primaryColor: #333533;
+    --secondaryColor: #242423;
+    --tertiaryColor: #e8eddf;
+    --primaryColorGrey: #cfdbd5;
+    --fourthColor: #f5cb5c;
     --font1: Noto, sans-serif;
     --font2: Futara, sans-serif;
+
 }
 
 *, *::before, *::after{
     box-sizing: border-box;
     margin: 0;
+    font-family: var(--font1);
 }
 
 body, html{
@@ -23,7 +25,7 @@ body{
     padding: 10px;
     gap: 10px;
 
-    background: linear-gradient(to bottom,var(--primaryColor),var(--secondaryColor));
+    background: var(--secondaryColor);
 }
 
 body > *{
@@ -35,28 +37,37 @@ header{
     color: var(--fourthColor);
     font-family: var(--font2);
     flex-grow: 0;
+    font-variant: small-caps;
 }
 .menu {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-.menu>a{
-    border: 1px solid var(--fourthColor);
-    color: var(--primaryColorGrey);
+.menu > a{
     font-size: 1.3rem;
+    color: var(--tertiaryColor);
     text-decoration: none;
+    transition: all 0.5s ease-in-out;
 }
+.menu > a:hover {
+    color: var(--fourthColor);
+    text-shadow: 0 0 10px var(--fourthColor);
+    transform: translateY(-2px);
+}
+.menu > a:active {
+    transform: translateY(2px);
+}
+
 main{
     display: flex;
     flex-direction: column;
     gap: 1rem;
     overflow-y: scroll;
     border: var(--tertiaryColor) 5px solid;
-    border-radius: 0.2rem;
     font-family: var(--font1);
     flex-grow: 1;
-    border-radius: 10px;
+    border-radius: 0.2rem;
     color: var(--tertiaryColor);
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
@@ -67,6 +78,12 @@ footer{
     font-family: var(--font1);
     flex-grow: 0;
 }
+h1 {
+    font-family: var(--font2);
+    color: var(--fourthColor);
+    text-shadow: 0 0 10px var(--fourthColor);
+}
+
 .list{
     display: flex;
     flex-wrap: wrap;
@@ -75,16 +92,18 @@ footer{
 }
 .card{
     position: relative;
-    border: 2px solid black;
+    border: 2px solid var(--primaryColor);
     width: 22vh;
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.5s ease-in-out;
 }
+
 .card__img{
     width: 100%;
     object-fit: cover;
-    border-radius: 7px;
+    border-radius: 0.2rem;
 }
 .card__desc{
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -95,7 +114,7 @@ footer{
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: white;
+    color: var(--tertiaryColor);
     font-size: 1.2rem;
     padding: 3rem 0 0.5rem 0;
 }
@@ -105,15 +124,32 @@ footer{
 /*
 Pour la page movie, la liste des acteurs :
  */
+.list__cast {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .card__horizontal{
     display: flex;
     flex-direction: row;
     width: 100%;
     border: 5px solid var(--tertiaryColor);
+    text-decoration: none;
+    color: var(--tertiaryColor);
+    font-size: 1rem;
+    transition: color 0.5s ease-in-out, font-size 0.5s ease-in-out;
 }
+.card__horizontal:hover{
+    color: var(--fourthColor);
+    text-shadow: 0 0 10px var(--fourthColor);
+    font-size: 1.05rem;
+}
+
+
 .card__horizontal>img{
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
 }
 .card__horizontal>.info{
     display: flex;
@@ -122,13 +158,19 @@ Pour la page movie, la liste des acteurs :
     padding: 0.1rem;
     width: 100%;
     margin: 0.2rem;
+    justify-content: center;
 }
 .card__horizontal>.info>*{
-    border: 2px solid var(--tertiaryColor);
+    flex: 0;
     height: 100%;
     border-radius: 5px;
     text-align: center;
 }
+.card__desc > p {
+    color: var(--primaryColorGrey);
+}
+
+
 /*
 Toujours la liste des movies, mais pour les informations du film :
  */
@@ -137,14 +179,18 @@ Toujours la liste des movies, mais pour les informations du film :
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+    align-items: center;
 }
 .master__card>img{
     width: 100%;
+    max-width: 300px;
+    border-radius: 0.2rem;
 }
 .master__card>.info{
     width: 100%;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 .master__card>.info>*{
     height: 100%;
@@ -159,9 +205,14 @@ Toujours la liste des movies, mais pour les informations du film :
 }
 .tagline{
     text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.2rem;
 }
+
 .overview{
     text-align: justify;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
 }
 .master__card>.info>*:not(.overview){
     padding: 0.1rem;
@@ -171,7 +222,7 @@ Toujours la liste des movies, mais pour les informations du film :
 Affichage pour tablette :
  */
 @media screen and (min-width: 360px){
-    .list{
+    .list {
         justify-content: space-evenly;
     }
 }
@@ -179,14 +230,34 @@ Affichage pour tablette :
 Affichage pour PC :
  */
 @media screen and (min-width: 775px) {
+    .menu {
+        flex-direction: row;
+    }
     .master__card{
         flex-direction: row;
+        align-items: flex-start;
     }
     .master__card>img{
         width: 20vh;
+        object-fit: cover;
     }
     .master__card>.info>.sub_info{
         flex-direction: row;
+        gap: 2rem;
+    }
+    .sub_info .date~.date {
+        flex: 1;
+        text-align: left;
+    }
+
+    .list__cast {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .card__horizontal {
+        width: auto;
+        flex: 1;
+        min-width: 40%;
     }
 }
 @media (pointer:coarse) {
