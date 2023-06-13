@@ -221,7 +221,7 @@ class Movie
     public function delete() : Movie {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
 DELETE FROM movie
-WHERE id = := idMovie
+WHERE id = :idMovie
 SQL);
         $stmt->execute([":idMovie" => $this->getId()]);
         $this->setId(null);

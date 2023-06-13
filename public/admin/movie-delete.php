@@ -2,6 +2,7 @@
 
 use Entity\Movie;
 use Entity\Exception\EntityNotFoundException;
+use Exception\ParameterException;
 
 try {
     if (empty($_GET['movieId']) || !ctype_digit($_GET['movieId'])) {
