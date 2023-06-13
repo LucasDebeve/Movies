@@ -45,9 +45,6 @@ header{
     text-align: center;
     justify-content: space-evenly;
 }
-.menu>#danger{
-    color: red;
-}
 .menu > a{
     font-size: 1.3rem;
     color: var(--tertiaryColor);
@@ -57,6 +54,11 @@ header{
 .menu > a:hover {
     color: var(--fourthColor);
     text-shadow: 0 0 10px var(--fourthColor);
+    transform: translateY(-2px);
+}
+.menu > #danger:hover{
+    color: #ff5858;
+    text-shadow: 0 0 10px red;
     transform: translateY(-2px);
 }
 .menu > a:active {
