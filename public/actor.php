@@ -43,7 +43,7 @@ if ($actor->getBirthday() != null) {
     $webPage->appendContent("<span class='date'>?</span>");
 }
 if ($actor->getDeathday() != null) {
-    $webPage->appendContent("<span class='date'> - {$actor->getBirthday()}</span>");
+    $webPage->appendContent("<span class='date'> - {$actor->getDeathday()}</span>");
 } else {
     $webPage->appendContent("<span class='date'> - ?</span>");
 }
