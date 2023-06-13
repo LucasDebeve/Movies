@@ -9,7 +9,7 @@ use Entity\Genre;
 
 class GenreCollection
 {
-    public static function findAll() : array
+    public static function findAll(): array
     {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
 SELECT * FROM genre order by name

@@ -10,8 +10,6 @@ use Entity\Movie;
 use Exception\ParameterException;
 use Html\AppWebPage;
 
-
-
 $webPage = new AppWebPage();
 
 try {
@@ -37,7 +35,8 @@ $webPage->appendContent("<div class='list'>");
 foreach ($movies_genres as $movie_genre) {
     $movie = Movie::findById($movie_genre->getMovieId());
     $strPosterId = strval($movie->getPosterId());
-    $webPage->appendContent(<<<HTML
+    $webPage->appendContent(
+        <<<HTML
 <a href="/movie.php?movieId={$movie->getId()}" class="card">
     <img class="card__img" src="image.php?imageid={$strPosterId}&type=movie" alt="{$movie->getTitle()}">
     <p class="card__desc">{$webPage->escapeString($movie->getTitle())}</p>

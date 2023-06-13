@@ -15,7 +15,7 @@ class Genre
     /** Accesseur de l'id
      * @return int
      */
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -23,12 +23,12 @@ class Genre
     /** Accesseur du nom
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public static function findById(int $id) : Genre
+    public static function findById(int $id): Genre
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL

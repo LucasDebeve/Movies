@@ -10,7 +10,7 @@ use Entity\GenreMovie;
 
 class GenreMovieCollection
 {
-    public static function findByMovieId(int $movieId) : array
+    public static function findByMovieId(int $movieId): array
     {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
 SELECT * FROM movie_genre WHERE movieid = :movieId
@@ -19,7 +19,7 @@ SQL);
         return $stmt->fetchAll(MyPdo::FETCH_CLASS, GenreMovie::class);
     }
 
-    public static function findByGenreId(int $genreId) : array
+    public static function findByGenreId(int $genreId): array
     {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
 SELECT * FROM movie_genre WHERE genreid = :genreId
