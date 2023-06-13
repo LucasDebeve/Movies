@@ -275,4 +275,12 @@ SQL);
         $this->setId(intval(MyPdo::getInstance()->lastInsertId()));
         return $this;
     }
+
+    public function save() : Movie {
+        if ($this->id) {
+            return $this->update();
+        } else {
+            return $this->insert();
+        }
+    }
 }
