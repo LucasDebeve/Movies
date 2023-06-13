@@ -71,7 +71,7 @@ HTML;
     <label for="tagline">Tagline</label>
     <input type="text" name="tagline" id="tagline" value="" required>
     <label for="overview">Résumé</label>
-    <textarea name="overview" id="overview" cols="30" rows="10" required></textarea>
+    <textarea name="overview" id="overview" cols="30" rows="10" required style="resize: none"></textarea>
     <button type="submit"><span class="menu__detail">Enregistrer</span><span class="material-symbols-outlined">save</span></button>
 </form>
 HTML;
