@@ -181,6 +181,16 @@ class Movie
         return $this;
     }
 
+    /**
+     * @param string $title
+     * @return Movie
+     */
+    public function setTitle(string $title): Movie
+    {
+        $this->title = $title;
+        return $this;
+    }
+
     /** Cherche un film par son id
      * @param int $id
      * @throws EntityNotFoundException
@@ -214,4 +224,13 @@ SQL);
         $this->setId(null);
         return $this;
     }
+
+    public function create(string $title,string $originalTitle, string $originalLanguage, ?string $overview,
+                           string $releaseDate, int $runtime, string $tagline, int $posterId, ?int $id) : Movie {
+        $movie = new self();
+        $movie->setTitle($title)->setOriginalTitle($originalTitle)->setOriginalLanguage($originalLanguage)->setOverview($overview);
+        return $movie->setReleaseDate($releaseDate)->setRuntime($runtime)->setTagline($tagline)->setPosterId($posterId)->setId($id);
+    }
+
+
 }
