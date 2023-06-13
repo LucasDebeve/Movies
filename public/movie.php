@@ -78,5 +78,8 @@ HTML);
 
 }
 $webPage->appendContent("</div>");
-
+$webPage->appendToMenu(<<<HTML
+<a href="admin/movie-form.php?movieId={$movie->getId()}">Modifier<a/>
+<a id="danger" href="admin/movie-delete.php?movieId={$movie->getId()}">Supprimer<a/>
+HTML);
 echo $webPage->toHTML();
