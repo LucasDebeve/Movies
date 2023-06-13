@@ -80,6 +80,8 @@ HTML);
 $webPage->appendContent("</div>");
 $webPage->appendToMenu(<<<HTML
 <a href="admin/movie-form.php?movieId={$movie->getId()}">Modifier</a>
-<a id="danger" href="admin/movie-delete.php?movieId={$movie->getId()}">Supprimer</a>
+<a id="danger" href="admin/movie-delete.php?movieId={$movie->getId()}">Supprimer <span class="material-symbols-outlined">delete</span></a>
 HTML);
+
+$webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
 echo $webPage->toHTML();
