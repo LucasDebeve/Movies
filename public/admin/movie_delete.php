@@ -1,21 +1,20 @@
 <?php
 
 use Entity\Movie;
-use Html\AppWebPage;
 use Entity\Exception\EntityNotFoundException;
 
-if (!empty($_GET['movieId']) && ctype_digit($_GET['movieId'])) {
-    $movieId = intval($_GET['movieId']);
-} else {
-    header("Location: /", response_code: 302);
-    exit();
-}
-
 try {
+    if (empty($_GET['movieId']) || !ctype_digit($_GET['movieId'])) {
+        throw new ParameterException("Identifiant du film absent ou invalide");
+    }
+    $movieId = intval($_GET['movieId']);
     $movie = Movie::findByID($movieId);
-} catch (EntityNotFoundException $e) {
+    $movie->delete();
+    header("Location: /");
+} catch (ParameterException) {
+    http_response_code(400);
+} catch (EntityNotFoundException) {
     http_response_code(404);
-    exit();
+} catch (Exception) {
+    http_response_code(500);
 }
-
-$webPage = new AppWebPage();
