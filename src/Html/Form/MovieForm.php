@@ -31,7 +31,8 @@ class MovieForm
      * @param string $action
      * @return string code HTML
      */
-    public function getHtmlForm(string $action) : string {
+    public function getHtmlForm(string $action): string
+    {
         if (!is_null($this->movie)) {
             return <<<HTML
 <form action="{$action}" method="post">
@@ -80,7 +81,8 @@ HTML;
     /** Méthode permettant de définir l'attribut $movie à partir des données du formulaire
      * @throws ParameterException
      */
-    public function setEntityFromQueryString() : void {
+    public function setEntityFromQueryString(): void
+    {
         if (!empty($_POST['id']) && ctype_digit($_POST['id'])) {
             $id = intval($_POST['id']);
         } else {
@@ -121,7 +123,7 @@ HTML;
         } else {
             throw new ParameterException("Le résumé du film non renseigné");
         }
-        $this->movie = Movie::create($title, $originalTitle,$originalLanguage,$overview, $releaseDate, $runtime,null, $tagline,  $id);
+        $this->movie = Movie::create($title, $originalTitle, $originalLanguage, $overview, $releaseDate, $runtime, $tagline, $id);
 
     }
 

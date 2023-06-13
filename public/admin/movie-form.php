@@ -8,13 +8,13 @@ use Entity\Movie;
 use Html\Form\MovieForm;
 
 try {
-    if (isset($_GET["movieId"])) { /** Si il y a un movieId dans la méthode GET : */
+    if (isset($_GET["movieId"])) {
         if (!ctype_digit($_GET["movieId"])) {
             throw new ParameterException("Identifiant du film invalide");
         } else {
             $movie=Movie::findById(intval($_GET["movieId"]));
         }
-    } else { /** Si il n'y a pas de movieId : */
+    } else {
         $movie=null;
     }
     $form=new MovieForm($movie);
@@ -23,7 +23,6 @@ try {
     http_response_code(400);
 } catch (EntityNotFoundException) {
     http_response_code(404);
-}
-catch (Exception) {
+} catch (Exception) {
     http_response_code(500);
 }
