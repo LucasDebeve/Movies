@@ -258,4 +258,21 @@ SQL);
         return $this;
     }
 
+    protected function insert(): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(<<<SQL
+INSERT INTO movie (title, originalTitle, originalLanguage, overview, releaseDate, runtime, tagline, posterId)
+VALUES (:title, :originalTitle, :originalLanguage, :overview, :releaseDate, :runtime, :tagline, :posterId)
+SQL);
+        $stmt->execute([":title"=>$this->title,
+            ":originalTitle"=>$this->originalTitle,
+            ":originalLanguage"=>$this->originalLanguage,
+            ":overview"=>$this->overview,
+            ":releaseDate"=>$this->releaseDate,
+            ":runtime"=>$this->runtime,
+            ":tagline"=>$this->tagline,
+            ":posterId"=>$this->posterId]);
+        $this->setId(intval(MyPdo::getInstance()->lastInsertId()));
+        return $this;
+    }
 }
