@@ -215,6 +215,9 @@ class Movie
         }
     }
 
+    /** Supprime un film
+     * @return $this
+     */
     public function delete() : Movie {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
 DELETE FROM movie
@@ -225,13 +228,28 @@ SQL);
         return $this;
     }
 
-    public static function create(string $title,string $originalTitle, string $originalLanguage, ?string $overview,
-                           string $releaseDate, int $runtime, ?string $tagline, ?int $posterId, ?int $id) : Movie {
+    /** Créer un film
+     * @param string $title Titre du film
+     * @param string $originalTitle Titre original du film
+     * @param string $originalLanguage Langue originale du film
+     * @param string $overview Résumé du film
+     * @param string $releaseDate Date de sortie du film
+     * @param int $runtime Durée du film
+     * @param string $tagline Slogan du film
+     * @param int $posterId Id de l'affiche du film
+     * @param int|null $id Id de l'artiste à créée
+     * @return Movie Film créé
+     */
+    public static function create(string $title,string $originalTitle, string $originalLanguage, string $overview,
+                           string $releaseDate, int $runtime, string $tagline, int $posterId, ?int $id) : Movie {
         $movie = new self();
         $movie->setTitle($title)->setOriginalTitle($originalTitle)->setOriginalLanguage($originalLanguage)->setOverview($overview);
         return $movie->setReleaseDate($releaseDate)->setRuntime($runtime)->setTagline($tagline)->setPosterId($posterId)->setId($id);
     }
 
+    /** Met à jour un film dans la base de données
+     * @return $this Film mis à jour
+     */
     protected function update(): Movie
     {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
@@ -258,6 +276,10 @@ SQL);
         return $this;
     }
 
+
+    /** Insère un film dans la base de données
+     * @return $this Film inséré
+     */
     protected function insert(): Movie
     {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
@@ -276,6 +298,9 @@ SQL);
         return $this;
     }
 
+    /** Insère ou met un jour un film dans la base de données
+     * @return $this Film inséré ou mis à jour
+     */
     public function save() : Movie {
         if ($this->id) {
             return $this->update();
