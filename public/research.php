@@ -4,19 +4,29 @@
 declare(strict_types=1);
 
 use Entity\Collection\GenreMovieCollection;
+use Entity\Exception\EntityNotFoundException;
 use Entity\Genre;
 use Entity\Movie;
 use Exception\ParameterException;
 use Html\AppWebPage;
 
-if (empty($_GET['genreId']) || !ctype_digit($_GET['genreId'])) {
-    header("Location: /", response_code: 302);
-}
-$genreId = intval($_GET['genreId']);
+
 
 $webPage = new AppWebPage();
 
-$genre = Genre::findById($genreId);
+try {
+    if (!isset($_GET["genreId"]) || !ctype_digit($_GET["genreId"])) {
+        throw new ParameterException("Identifiant du genre absent ou invalide");
+    }
+    $genreId = intval($_GET["genreId"]);
+    $genre = Genre::findById($genreId);
+} catch (ParameterException) {
+    header("Location: /", response_code: 302);
+    exit();
+} catch (EntityNotFoundException) {
+    http_response_code(404);
+    exit();
+}
 
 $webPage->setTitle("Films du genre " . $genre->getName());
 

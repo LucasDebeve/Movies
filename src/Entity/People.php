@@ -151,7 +151,7 @@ class People
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
-        SELECT id, avatarId, biography, birthday, deathday, name, placeOfBirth
+        SELECT id, avatarId, biography, DATE_FORMAT(birthday, '%d/%m/%Y') AS birthday, DATE_FORMAT(deathday, '%d/%m/%Y') AS deathday, name, placeOfBirth
         FROM people
         WHERE id = :idPeople
         SQL

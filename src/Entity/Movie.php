@@ -200,7 +200,7 @@ class Movie
     {
         $stmt = MyPdo::getInstance()->prepare(
             <<<SQL
-        SELECT *
+        SELECT id, originalTitle, originalLanguage, overview, DATE_FORMAT(releaseDate, '%d/%m/%Y') AS releaseDate, runtime, tagline, title, posterId
         FROM movie
         WHERE id = :idMovie
         SQL
