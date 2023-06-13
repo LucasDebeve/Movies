@@ -204,4 +204,14 @@ class Movie
             throw new EntityNotFoundException("Film introuvable");
         }
     }
+
+    public function delete() : Movie {
+        $stmt = MyPdo::getInstance()->prepare(<<<SQL
+DELETE FROM movie
+WHERE id = := idMovie
+SQL);
+        $stmt->execute([":idMovie" => $this->getId()]);
+        $this->setId(null);
+        return $this;
+    }
 }
