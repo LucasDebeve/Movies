@@ -225,12 +225,37 @@ SQL);
         return $this;
     }
 
-    public function create(string $title,string $originalTitle, string $originalLanguage, ?string $overview,
-                           string $releaseDate, int $runtime, string $tagline, int $posterId, ?int $id) : Movie {
+    public static function create(string $title,string $originalTitle, string $originalLanguage, ?string $overview,
+                           string $releaseDate, int $runtime, ?string $tagline, ?int $posterId, ?int $id) : Movie {
         $movie = new self();
         $movie->setTitle($title)->setOriginalTitle($originalTitle)->setOriginalLanguage($originalLanguage)->setOverview($overview);
         return $movie->setReleaseDate($releaseDate)->setRuntime($runtime)->setTagline($tagline)->setPosterId($posterId)->setId($id);
     }
 
+    protected function update(): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(<<<SQL
+UPDATE artist
+SET title = :title,
+    originalTitle = :originalTitle,
+    originalLanguage = :originalLanguage,
+    overview = :overview,
+    releaseDate = :releaseDate,
+    runtime = :runtime,
+    tagline = :tagline,
+    posterId = :posterId
+WHERE id = :idArtist
+SQL);
+        $stmt->execute([":idMovie" => $this->id,
+            ":name"=>$this->title,
+            ":originalTitle"=>$this->originalTitle,
+            ":originalLanguage"=>$this->originalLanguage,
+            ":overview"=>$this->overview,
+            ":releaseDate"=>$this->releaseDate,
+            ":runtime"=>$this->runtime,
+            ":tagline"=>$this->tagline,
+            ":posterId"=>$this->posterId]);
+        return $this;
+    }
 
 }
