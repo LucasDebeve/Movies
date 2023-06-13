@@ -27,7 +27,7 @@ try {
 $webPage->setTitle("Films - {$webPage->escapeString($actor->getName())}");
 
 $webPage->appendToMenu(<<<HTML
-<a href="index.php">Accueil</a>
+<a href="index.php"><span class="menu__detail">Accueil</span><span class="material-symbols-outlined">home</span></a>
 HTML);
 
 $webPage->appendContent(<<<HTML
@@ -78,5 +78,5 @@ HTML);
 $webPage->appendContent("</div>");
 
 
-
+$webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
 echo $webPage->toHTML();

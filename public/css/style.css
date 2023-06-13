@@ -41,8 +41,9 @@ header{
 }
 .menu {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     text-align: center;
+    justify-content: space-evenly;
 }
 .menu > a{
     font-size: 1.3rem;
@@ -50,9 +51,21 @@ header{
     text-decoration: none;
     transition: all 0.5s ease-in-out;
 }
+.menu>a>span{
+    vertical-align: middle;
+    font-size: 2rem;
+}
+.menu>a>.menu__detail{
+    display: none;
+}
 .menu > a:hover {
     color: var(--fourthColor);
     text-shadow: 0 0 10px var(--fourthColor);
+    transform: translateY(-2px);
+}
+.menu > #danger:hover{
+    color: #ff5858;
+    text-shadow: 0 0 10px red;
     transform: translateY(-2px);
 }
 .menu > a:active {
@@ -221,7 +234,7 @@ Toujours la liste des movies, mais pour les informations du film :
 /*
 Affichage pour tablette :
  */
-@media screen and (min-width: 360px){
+@media screen and (min-width: 480px){
     .list {
         justify-content: space-evenly;
     }
@@ -230,8 +243,8 @@ Affichage pour tablette :
 Affichage pour PC :
  */
 @media screen and (min-width: 775px) {
-    .menu {
-        flex-direction: row;
+    .menu>a>.menu__detail{
+        display: inline;
     }
     .master__card{
         flex-direction: row;
@@ -263,5 +276,8 @@ Affichage pour PC :
 @media (pointer:coarse) {
     .card__desc{
         opacity: 1;
+    }
+    .menu > #danger {
+        color: #ff5858;
     }
 }
