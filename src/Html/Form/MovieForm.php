@@ -34,6 +34,7 @@ class MovieForm
     public function getHtmlForm(string $action): string
     {
         if (!is_null($this->movie)) {
+            $date=date("Y-m-d", strtotime($this->movie->getReleaseDate()));
             return <<<HTML
 <form action="{$action}" method="post" class="full__form">
     <input type="hidden" name="id" id="id" value="{$this->movie->getId()}">
@@ -44,13 +45,13 @@ class MovieForm
     <label for="originalTitle">Titre original</label>
     <input type="text" name="originalTitle" id="originalTitle" value="{$this->escapeString($this->movie->getOriginalTitle())}" required>
     <label for="releaseDate">Date de sortie</label>
-    <input type="date" name="releaseDate" id="releaseDate" value="{$this->escapeString($this->movie->getReleaseDate())}" required>
+    <input type="date" name="releaseDate" id="releaseDate" value="{$this->escapeString($date)}">
     <label for="runtime">Durée</label>
-    <input type="number" name="runtime" id="runtime" value="{$this->escapeString($this->movie->getRuntime())}" required>
+    <input type="number" name="runtime" id="runtime" value="{$this->escapeString($this->movie->getRuntime())}">
     <label for="tagline">Tagline</label>
-    <input type="text" name="tagline" id="tagline" value="{$this->escapeString($this->movie->getTagline())}" required>
+    <input type="text" name="tagline" id="tagline" value="{$this->escapeString($this->movie->getTagline())}">
     <label for="overview">Résumé</label>
-    <textarea name="overview" id="overview" cols="30" rows="10" required>{$this->escapeString($this->movie->getTagline())}</textarea>
+    <textarea name="overview" id="overview" cols="30" rows="10">{$this->escapeString($this->movie->getTagline())}</textarea>
     <button type="submit"><span class="menu__detail">Enregistrer</span><span class="material-symbols-outlined">save</span></button>
 </form>
 HTML;
@@ -65,7 +66,7 @@ HTML;
     <label for="originalTitle">Titre original</label>
     <input type="text" name="originalTitle" id="originalTitle" value="" required>
     <label for="releaseDate">Date de sortie</label>
-    <input type="date" name="releaseDate" id="releaseDate" value="" required>
+    <input type="date" name="releaseDate" id="releaseDate" value="">
     <label for="runtime">Durée</label>
     <input type="number" name="runtime" id="runtime" value="">
     <label for="tagline">Tagline</label>
@@ -104,24 +105,25 @@ HTML;
             throw new ParameterException("Le titre original du film non renseigné");
         }
         if (!empty($_POST['releaseDate'])) {
-            $releaseDate = $this->stripTagsAndTrim($_POST['releaseDate']);
+            $releaseDate = str_replace("-", "/", $this->stripTagsAndTrim($_POST['releaseDate']));
+            $releaseDate=date("d/m/Y", strtotime($releaseDate));
         } else {
-            throw new ParameterException("La date de sortie du film non renseignée");
+            $releaseDate=date("d/m/Y");
         }
         if (!empty($_POST['runtime']) && ctype_digit($_POST['runtime'])) {
             $runtime = intval($this->stripTagsAndTrim($_POST['runtime']));
         } else {
-            throw new ParameterException("La durée du film non renseignée");
+            $runtime=0;
         }
         if (!empty($_POST['tagline'])) {
             $tagline = $this->stripTagsAndTrim($_POST['tagline']);
         } else {
-            throw new ParameterException("La tagline du film non renseignée");
+            $tagline="";
         }
         if (!empty($_POST['overview'])) {
             $overview = $this->stripTagsAndTrim($_POST['overview']);
         } else {
-            throw new ParameterException("Le résumé du film non renseigné");
+            $overview="";
         }
         $this->movie = Movie::create($title, $originalTitle, $originalLanguage, $overview, $releaseDate, $runtime, $tagline, $id);
 

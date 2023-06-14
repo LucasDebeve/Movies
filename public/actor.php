@@ -38,6 +38,7 @@ $webPage->appendContent(<<<HTML
         <h1>{$webPage->escapeString($actor->getName())}</h1>
     <div class='sub_info'>
 HTML);
+/** Ajout des dates de naissances et de mort : */
 if ($actor->getBirthday() != null) {
     $webPage->appendContent("<span class='date'>{$actor->getBirthday()}</span>");
 } else {
@@ -58,13 +59,14 @@ $webPage->appendContent(<<<HTML
     </div>
 </div>
 HTML);
-
 $casts = CastCollection::findByPeopleId($actorId);
-$webPage->appendContent("<div class='list'>");
+$films="<div class='list'>";
+$duree=0;
 foreach ($casts as $cast) {
     try {
         $movie = Movie::findById($cast->getMovieId());
-        $webPage->appendContent(<<<HTML
+        $duree+=$movie->getRuntime();
+        $films=$films.<<<HTML
 <a href="movie.php?movieId={$movie->getId()}" class="card">
     <img class="card__img" src="image.php?imageid={$movie->getPosterId()}&type=movie" alt="poster">
     <div class="card__desc">
@@ -72,12 +74,19 @@ foreach ($casts as $cast) {
         <p>{$webPage->escapeString($cast->getRole())}</p>
     </div>
 </a>
-HTML);
+HTML;
     } catch (EntityNotFoundException $e) {
     }
 }
+$films=$films."</div>";
+$nbfilms=count($casts);
+$webPage->appendContent("<div class='stats'>");
+$webPage->appendContent("<p class='nbMovies'><strong>&#x1F4FD;&#xFE0F; Nombre de films joués :</strong> {$nbfilms}</p>");
+$moyDuree=round($duree/$nbfilms, 2);
+$webPage->appendContent("<p class='moyenne__films'><strong>&#x1F550; Durée moyenne des films :</strong> {$moyDuree} min</p>");
 $webPage->appendContent("</div>");
 
+$webPage->appendContent($films);
 // Ajout de la barre de recherche
 $webPage->appendToMenu(<<<HTML
 <form action="research.php" method="get">
