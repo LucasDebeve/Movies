@@ -36,7 +36,6 @@ $webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbol
 
 
 // Ajout de la barre de recherche
-// Drop down list des genres
 $webPage->appendToMenu(<<<HTML
 <form action="research.php" method="get">
     <select name="genreId">
