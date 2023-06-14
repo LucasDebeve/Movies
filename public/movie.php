@@ -37,7 +37,7 @@ $webPage->appendContent(<<<HTML
     <div class="info">
         <h1>{$webPage->escapeString($movie->getTitle())}</h1>
         <div class="sub_info">
-            <span class="date">{$movie->getReleaseDate()}</span>
+            <span class="date">&#x1F4C6; {$movie->getReleaseDate()}</span>
 HTML);
 
 $languageCountry = ["en" => "gb", "ja" => "jp", "zh" => "cn", "ko" => "kr"];
@@ -48,12 +48,16 @@ if (array_key_exists($movie->getOriginalLanguage(), $languageCountry)) {
     $webPage->appendContent("<span class='original_title'><span class='fi fi-{$movie->getOriginalLanguage()}'>.</span>{$movie->getOriginalTitle()}</span>");
 }
 $webPage->appendContent("</div>");
+if ($movie->getRuntime() != null) {
+    $webPage->appendContent("<p class='runtime'>&#x1F550; {$webPage->escapeString(strval($movie->getRuntime()))} min</p>");
+}
 if ($movie->getTagline() != null) {
     $webPage->appendContent("<p class='tagline'>{$webPage->escapeString($movie->getTagline())}</p>");
 }
 if ($movie->getOverview() != null) {
     $webPage->appendContent("<p class='overview'>{$webPage->escapeString($movie->getOverview())}</p>");
 }
+
 $webPage->appendContent(<<<HTML
     </div>
 </div>
@@ -61,9 +65,9 @@ HTML);
 
 $webPage->appendContent("<div class='list__cast'>");
 $casts = CastCollection::findByMovieId($movieId);
-$nbacteurs=count($casts);
+$nbActeurs=count($casts);
 $webPage->appendContent("<div class='stats'>");
-$webPage->appendContent("<p class='nbActeurs'><strong>Nombre d'acteurs :</strong> {$nbacteurs}</p>");
+$webPage->appendContent("<p class='nbActeurs'><strong>Nombre d'acteurs :</strong> {$nbActeurs}</p>");
 $webPage->appendContent("</div>");
 foreach ($casts as $cast) {
     try {
