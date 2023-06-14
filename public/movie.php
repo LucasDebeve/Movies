@@ -61,6 +61,10 @@ HTML);
 
 $webPage->appendContent("<div class='list__cast'>");
 $casts = CastCollection::findByMovieId($movieId);
+$nbacteurs=count($casts);
+$webPage->appendContent("<div class='stats'>");
+$webPage->appendContent("<p class='nbActeurs'><strong>Nombre d'acteurs :</strong> {$nbacteurs}</p>");
+$webPage->appendContent("</div>");
 foreach ($casts as $cast) {
     try {
         $actor = People::findById($cast->getPeopleId());
