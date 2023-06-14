@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Entity\Collection\CastCollection;
+use Entity\Collection\GenreCollection;
 use Entity\Exception\EntityNotFoundException;
 use Html\AppWebPage;
 use Entity\Movie;
@@ -84,4 +85,24 @@ $webPage->appendToMenu(<<<HTML
 HTML);
 
 $webPage->appendCssURL("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
+
+// Ajout de la barre de recherche
+$webPage->appendToMenu(<<<HTML
+<form action="research.php" method="get">
+    <select name="genreId">
+HTML);
+$genres = GenreCollection::findAll();
+
+foreach ($genres as $genre) {
+    $webPage->appendToMenu(<<<HTML
+        <option value="{$genre->getId()}">{$genre->getName()}</option>
+HTML);
+}
+
+$webPage->appendToMenu(<<<HTML
+    </select>
+    <button type="submit">Rechercher</button>
+</form>
+HTML);
+
 echo $webPage->toHTML();
