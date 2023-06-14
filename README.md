@@ -43,14 +43,14 @@ Puis aller sur [localhost:8000/]().
   - [x] Affichage des informations du film
   - [x] Affichage des acteurs du film
   - [x] Style de la page
-- [ ] Détail d'un acteur
+- [X] Détail d'un acteur
   - [x] Affichage des informations de l'acteur
   - [x] Affichage des films de l'acteur
-  - [ ] Style de la page
-- [ ] Création d'un film
-- [ ] Modification d'un film
-- [ ] Suppression d'un film
-- [ ] Filtrage par genre des films
+  - [X] Style de la page
+- [X] Création d'un film
+- [X] Modification d'un film
+- [X] Suppression d'un film
+- [X] Filtrage par genre des films
 
 ## Style de codage
 Utilisation de PHP CS Fixer pour respecter la recommandation PSR-12.
