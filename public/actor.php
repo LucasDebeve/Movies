@@ -81,9 +81,9 @@ HTML;
 $films=$films."</div>";
 $nbfilms=count($casts);
 $webPage->appendContent("<div class='stats'>");
-$webPage->appendContent("<span class='nbMovies'>Nombre de films joués : {$nbfilms}</span>");
+$webPage->appendContent("<p class='nbMovies'><strong>Nombre de films joués :</strong> {$nbfilms}</p>");
 $moyDuree=round($duree/$nbfilms, 2);
-$webPage->appendContent("<span class='moyenne__films'>Durée moyenne des films : {$moyDuree} min</span>");
+$webPage->appendContent("<p class='moyenne__films'><strong>Durée moyenne des films :</strong> {$moyDuree} min</p>");
 $webPage->appendContent("</div>");
 
 $webPage->appendContent($films);
