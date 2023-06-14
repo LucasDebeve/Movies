@@ -266,7 +266,7 @@ SET title = :title,
     originalTitle = :originalTitle,
     originalLanguage = :originalLanguage,
     overview = :overview,
-    releaseDate = :releaseDate,
+    releaseDate = STR_TO_DATE(:releaseDate, '%d/%m/%Y'),
     runtime = :runtime,
     tagline = :tagline
 WHERE id = :idMovie
@@ -290,7 +290,7 @@ SQL);
     {
         $stmt = MyPdo::getInstance()->prepare(<<<SQL
 INSERT INTO movie (title, originalTitle, originalLanguage, overview, releaseDate, runtime, tagline)
-VALUES (:title, :originalTitle, :originalLanguage, :overview, :releaseDate, :runtime, :tagline)
+VALUES (:title, :originalTitle, :originalLanguage, :overview, STR_TO_DATE(:releaseDate, '%d/%m/%Y'), :runtime, :tagline)
 SQL);
         $stmt->execute([":title"=>$this->title,
             ":originalTitle"=>$this->originalTitle,
