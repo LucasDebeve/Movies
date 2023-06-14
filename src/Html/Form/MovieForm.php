@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Html\Form;
 
+use DateTime;
 use Entity\Movie;
 use Exception\ParameterException;
 
@@ -36,7 +37,7 @@ class MovieForm
     public function getHtmlForm(string $action): string
     {
         if (!is_null($this->movie)) {
-            $date=date("Y-m-d", strtotime($this->movie->getReleaseDate()));
+            $date=DateTime::createFromFormat("d/m/Y", $this->movie->getReleaseDate())->format("Y-m-d");
             return <<<HTML
 <form action="{$action}" method="post" class="full__form">
     <input type="hidden" name="id" id="id" value="{$this->movie->getId()}">
@@ -49,7 +50,7 @@ class MovieForm
     <label for="releaseDate">Date de sortie</label>
     <input type="date" name="releaseDate" id="releaseDate" value="{$this->escapeString($date)}">
     <label for="runtime">Durée</label>
-    <input type="number" name="runtime" id="runtime" value="{$this->escapeString($this->movie->getRuntime())}">
+    <input type="number" name="runtime" id="runtime" value="{$this->escapeString(strval($this->movie->getRuntime()))}">
     <label for="tagline">Tagline</label>
     <input type="text" name="tagline" id="tagline" value="{$this->escapeString($this->movie->getTagline())}">
     <label for="overview">Résumé</label>
@@ -108,7 +109,7 @@ HTML;
         }
         if (!empty($_POST['releaseDate'])) {
             $releaseDate = str_replace("-", "/", $this->stripTagsAndTrim($_POST['releaseDate']));
-            $releaseDate=date("d/m/Y", strtotime($releaseDate));
+            $releaseDate = DateTime::createFromFormat("Y/m/d", $releaseDate)->format("d/m/Y");
         } else {
             $releaseDate=date("d/m/Y");
         }
